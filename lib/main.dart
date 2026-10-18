@@ -1,38 +1,50 @@
-// Made by devilAPI with <3
-// https://github.com/devilAPI/web2apk
-
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-void main() => runApp(MyApp());
-
-var appName = "MYHELLOWORLD";
-var url = "https://azzzinheree.github.io/";
-var appColor = Colors.red;
+void main() {
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
-  WebViewController _controller;
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: appName,
+      title: 'MYHELLOWORLD',
       theme: ThemeData(
-        primarySwatch: appColor,
+        primarySwatch: Colors.red,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(appName),
-        ),
-        body: Center(
-          child: WebView(
-            initialUrl: url,
-            javascriptMode: JavascriptMode.unrestricted,
-            onWebViewCreated: (WebViewController webViewController) {
-              _controller = webViewController;
-            },
-          ),
-        ),
+      home: const WebViewPage(),
+    );
+  }
+}
+
+class WebViewPage extends StatefulWidget {
+  const WebViewPage({super.key});
+
+  @override
+  State<WebViewPage> createState() => _WebViewPageState();
+}
+
+class _WebViewPageState extends State<WebViewPage> {
+  late final WebViewController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..loadRequest(Uri.parse('https://azzinheree.github.io/'));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('MYHELLOWORLD'),
       ),
+      body: WebViewWidget(controller: controller),
     );
   }
 }
