@@ -8,7 +8,7 @@ void main() => runApp(MyApp());
 
 var appName = "MYHELLOWORLD";
 var url = "https://azzzinheree.github.io/";
-var appColor = Colors.Redl;
+var appColor = Colors.red;
 
 class MyApp extends StatelessWidget {
   WebViewController _controller;
